@@ -66,6 +66,9 @@ module Backup
       # in-memory database to the persisted dump file
       def invoke_save!
         cmd = "#{ redis_cli_utility } #{ credential_options } #{ connectivity_options } #{ user_options } SAVE"
+        puts "credential_options: #{credential_options}"
+        puts "connectivity_options: #{connectivity_options}"
+        puts "user_options: #{user_options}"
         puts "INVOKING: #{cmd}"
         
         response = `#{cmd}`
