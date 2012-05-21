@@ -88,6 +88,7 @@ module Backup
       # Performs the copy command to copy over the Redis dump file to the Backup archive
       def copy!
         src_path = File.join(path, database)
+        puts "------------------> src_path is: #{src_path}"
         unless File.exist?(src_path)
           raise Errors::Database::Redis::NotFoundError, <<-EOS
             Redis database dump not found
@@ -96,9 +97,12 @@ module Backup
         end
 
         dst_path = File.join(@dump_path, database)
+        puts "------------------> dst_path is: #{dst_path}"
         if @model.compressor
           @model.compressor.compress_with do |command, ext|
-            run("#{ command } -c #{ src_path } > #{ dst_path + ext }")
+            comp_cmd = "#{ command } -c #{ src_path } > #{ dst_path + ext }"
+            puts "-----> comp_cmd is: #{comp_cmd}"
+            `comp_cmd`
           end
         else
           FileUtils.cp(src_path, dst_path)
