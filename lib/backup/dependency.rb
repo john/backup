@@ -17,7 +17,7 @@ module Backup
       {
         'fog' => {
           :require => 'fog',
-          :version => '~> 1.3.1',
+          :version => '~> 1.6.0',
           :for     => 'Amazon S3, Rackspace Cloud Files (S3, CloudFiles Storages)'
         },
 
@@ -59,7 +59,7 @@ module Backup
 
         'httparty' => {
           :require => 'httparty',
-          :version => '~> 0.8.1',
+          :version => '~> 0.9.0',
           :for     => 'Sending Http Updates'
         },
 
